@@ -3,10 +3,12 @@ namespace HarryPotter.Games.Core
 {
 	public class ForceObscure :Force
 	{
-		public ForceObscure()
+        #region constructors
+        public ForceObscure(): base("Force obscure")
 		{
-			this.Libelle = "Force obscure";
+			this.Id = 2;
 		}
-	}
+        #endregion
+    }
 }
 

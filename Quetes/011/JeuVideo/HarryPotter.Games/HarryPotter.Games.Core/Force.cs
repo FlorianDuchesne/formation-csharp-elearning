@@ -14,7 +14,7 @@ namespace HarryPotter.Games.Core
 
         #region methodes
 
-        public void setPlayer(Player player)
+        public void SetPlayer(Player player)
         {
             this.Player = player;
         }
@@ -30,10 +30,15 @@ namespace HarryPotter.Games.Core
 
         //public Force() : this(string.Empty) { } 
 
-        public Force()
+        public Force(string libelle)
 		{
-            this.Libelle = "neutre";
+            this.Libelle = libelle;
 		}
+
+        public Force(): this("neutre") {
+            this.Id = 3;
+        }
+
         #endregion
     }
 }

@@ -1,30 +1,29 @@
 ﻿using System;
 namespace HarryPotter.Games.Core
 {
-	public class ItemMenu
+	public class ItemMenu :Menu
 	{
-        #region properties
+        #region fields
+        private readonly string item;
+        private readonly int index; 
+        #endregion
 
-        private string Item { get; set; }
-        private int Index { get; set; }
+        #region properties
+        public string Item { get { return item; } }
+        public int Index { get { return index; } }
         private List<Menu> Menus { get; set; }
         
         #endregion
 
         #region methods
-        public int GetIndex()
-        {
-            return this.Index;
-        }
-
-        public string GetItem()
-        {
-            return this.Item;
-        }
-
-        public void addMenu(Menu menu)
+        public void AddMenu(Menu menu)
         {
             this.Menus.Add(menu);
+        }
+
+        public override string ToString()
+        {
+            return $"{this.index}. {this.item}";
         }
 
         #endregion
@@ -32,8 +31,8 @@ namespace HarryPotter.Games.Core
         #region constructors
         public ItemMenu(int index, string item)
 		{
-            this.Item = item;
-            this.Index = index;
+            this.item = item;
+            this.index = index;
             this.Menus = new List<Menu>();
 		}
         #endregion

@@ -3,10 +3,12 @@ namespace HarryPotter.Games.Core
 {
 	public class ForceLumineuse :Force
 	{
-		public ForceLumineuse()
+        #region constructors
+        public ForceLumineuse(): base("Force lumineuse")
 		{
-			this.Libelle = "Force lumineuse";
+			this.Id = 1;
 		}
-	}
+        #endregion
+    }
 }
 

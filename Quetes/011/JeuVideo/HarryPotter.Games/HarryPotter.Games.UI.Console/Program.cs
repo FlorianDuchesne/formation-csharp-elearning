@@ -44,16 +44,16 @@ void AffichageCredits()
     Console.WriteLine("**********");
 }
 
-void PreparerListeForces(List<Force>listeForces)
+void PreparerListeForces()
 {
     listeForces.Add(new ForceLumineuse());
     listeForces.Add(new ForceObscure());
     listeForces.Add(new Force());
 }
 
-void AfficherChoixForces(List<Force> listeForces)
+void AfficherChoixForces()
 {
-    PreparerListeForces(listeForces);
+    PreparerListeForces();
     Console.WriteLine("De quel côté de la force seras-tu ? ");
     int i = 0;
     foreach (Force force in listeForces)
@@ -71,7 +71,7 @@ void AfficherChoixForces(List<Force> listeForces)
 }
     int AfficherForcesEtRetourneSelection()
 {
-    AfficherChoixForces(listeForces);
+    AfficherChoixForces();
 
     string saisieForce = Console.ReadLine();
     return int.Parse(saisieForce);
@@ -111,16 +111,12 @@ int[,] PrepareGrilleDuJeu()
 void AfficherMenu()
 {
     Menu menu = new Menu();
-    ItemMenu item = new ItemMenu(1, "nouvelle partie");
-    ItemMenu item2 = new ItemMenu(2, "charger une partie");
-    ItemMenu item3 = new ItemMenu(3, "crédits");
-    ItemMenu item4 = new ItemMenu(4, "quitter");
-    menu.addItem(item);
-    menu.addItem(item2);
-    menu.addItem(item3);
-    menu.addItem(item4);
+    menu.AddItem(new ItemMenu(1, "nouvelle partie"));
+    menu.AddItem(new ItemMenu(2, "charger une partie"));
+    menu.AddItem(new ItemMenu(3, "crédits"));
+    menu.AddItem(new ItemMenu(4, "quitter"));
 
-    menu.AfficherMenu();
+    menu.Afficher();
 
     // Créer une classe qui représente le menu
     // sous-classe avec item menu qui va afficher menu
@@ -264,7 +260,7 @@ void AfficherForceSelectionnee()
     const int forceObscur = 1;
     const int sansForce = 2;
 
-    player.setForce(listeForces[typeForce]); 
+    player.SetForce(listeForces[typeForce]); 
 
     switch (typeForce)
     {

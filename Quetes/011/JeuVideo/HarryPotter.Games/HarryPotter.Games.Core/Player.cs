@@ -13,11 +13,11 @@ namespace HarryPotter.Games.Core
     {
         #region Fields
         private string email = "";
-        private string? prenom;
+        private readonly string? prenom;
         private DateOnly dateDeNaissance;
 
         private Player[] Amis = new Player[3];
-        private Force? force { get; set; }
+        private Force? force;
         #endregion
 
         #region Constructors
@@ -36,6 +36,8 @@ namespace HarryPotter.Games.Core
         #endregion
 
         #region Properties
+
+        public Force? Force { get => force; set { } }
         public DateOnly DateDeNaissance
         {
             get
@@ -78,10 +80,10 @@ namespace HarryPotter.Games.Core
             System.Console.WriteLine($"{this.Prenom} Je cours");
         }
 
-        public void setForce(Force force)
+        public void SetForce(Force force)
         {
             this.force = force;
-            force.setPlayer(this);
+            force.SetPlayer(this);
         }
 
         #endregion

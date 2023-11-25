@@ -6,32 +6,27 @@ namespace HarryPotter.Games.Core
 
         #region properties
 
-        protected List<ItemMenu> Items { get; set; }
+        private readonly List<ItemMenu> items = new List<ItemMenu>();
         #endregion
 
         #region methods
-        public void AfficherMenu()
+        public void Afficher()
         {
-            string format = "{0}. {1}";
-            foreach(ItemMenu Item in Items)
+            foreach(ItemMenu item in items)
             {
-                string resultatFormattage = string.Format(format, Item.GetIndex(), Item.GetItem().Substring(0, 1).ToUpper() + Item.GetItem().Substring(1).ToLower());
-                Console.WriteLine(resultatFormattage);
+                Console.WriteLine(item);
             }
         }
 
-        public void addItem(ItemMenu item)
+        public void AddItem(ItemMenu item)
         {
-            this.Items.Add(item);
-            item.addMenu(this);
+            this.items.Add(item);
+            item.AddMenu(this);
         }
         #endregion
 
         #region constructors
-        public Menu()
-        {
-            this.Items = new List<ItemMenu>();
-        }
+        public Menu() {}
         #endregion
     }
 }

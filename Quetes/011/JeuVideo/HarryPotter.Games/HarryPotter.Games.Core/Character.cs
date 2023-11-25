@@ -28,7 +28,7 @@ namespace HarryPotter.Games.Core
         /// </summary>
         public string Prenom { get; set; } = string.Empty;
 
-        public Position currentPosition { get; set; } = new Position() { X = 0, Y = 0 };
+        public Position CurrentPosition { get; set; } = new Position() { X = 0, Y = 0 };
         #endregion
 
         #region Public methods
@@ -42,7 +42,7 @@ namespace HarryPotter.Games.Core
         public void SeDeplacer(Position newPosition)
         {
             this.SeDeplacer();
-            this.currentPosition = newPosition;
+            this.CurrentPosition = newPosition;
         }
 
         public void Attaquer(Character enemy)
