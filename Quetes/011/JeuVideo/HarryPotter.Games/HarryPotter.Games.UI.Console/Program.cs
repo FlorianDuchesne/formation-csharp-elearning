@@ -48,7 +48,7 @@ void PreparerListeForces()
 {
     listeForces.Add(new ForceLumineuse());
     listeForces.Add(new ForceObscure());
-    listeForces.Add(new Force());
+    listeForces.Add(new ForceNeutre());
 }
 
 void AfficherChoixForces()
@@ -111,10 +111,10 @@ int[,] PrepareGrilleDuJeu()
 void AfficherMenu()
 {
     Menu menu = new Menu();
-    menu.AddItem(new ItemMenu(1, "nouvelle partie"));
-    menu.AddItem(new ItemMenu(2, "charger une partie"));
-    menu.AddItem(new ItemMenu(3, "crédits"));
-    menu.AddItem(new ItemMenu(4, "quitter"));
+    menu.AddItem(1, "nouvelle partie");
+    menu.AddItem(2, "charger une partie");
+    menu.AddItem(3, "crédits");
+    menu.AddItem(4, "quitter");
 
     menu.Afficher();
 

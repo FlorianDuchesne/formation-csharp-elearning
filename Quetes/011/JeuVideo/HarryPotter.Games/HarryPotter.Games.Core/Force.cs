@@ -1,7 +1,7 @@
 ﻿using System;
 namespace HarryPotter.Games.Core
 {
-	public class Force
+	public abstract class Force
 	{
 
 		#region propriétés
@@ -34,10 +34,6 @@ namespace HarryPotter.Games.Core
 		{
             this.Libelle = libelle;
 		}
-
-        public Force(): this("neutre") {
-            this.Id = 3;
-        }
 
         #endregion
     }

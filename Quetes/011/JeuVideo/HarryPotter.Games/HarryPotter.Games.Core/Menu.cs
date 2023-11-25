@@ -18,8 +18,9 @@ namespace HarryPotter.Games.Core
             }
         }
 
-        public void AddItem(ItemMenu item)
+        public void AddItem(int id, string libelle)
         {
+            ItemMenu item = new ItemMenu(id, libelle);
             this.items.Add(item);
             item.AddMenu(this);
         }
