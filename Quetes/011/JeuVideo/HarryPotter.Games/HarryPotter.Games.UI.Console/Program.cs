@@ -1,11 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+Player player = new Player("yoda");
+Ennemi ennemi = new("Compte Doku");
+List<Force> listeForces = new List<Force>();
 
 //string surname = null;
 
 //surname.ToLower();
 
+//Player player = new Player();
 
 string titre = "Harry Potter game";
 titre = "Un jeu épique !";
@@ -30,13 +34,6 @@ Console.WriteLine(sousTitre.Substring(0, sousTitre.Length - 2));
 // Console.WriteLine(sousTitre.Replace(" !", ""));
 
 #region Framework du projet
-void AfficherItemMenu(string itemMenu, int indexMenu = 1)
-{
-    string format = "{0}. {1}";
-
-    string resultatFormattage = string.Format(format, indexMenu, itemMenu.Substring(0, 1).ToUpper() + itemMenu.Substring(1).ToLower());
-    Console.WriteLine(resultatFormattage);
-}
 
 // Affiche les crédits sur la console
 void AffichageCredits()
@@ -47,17 +44,34 @@ void AffichageCredits()
     Console.WriteLine("**********");
 }
 
-void AfficherChoixForces()
+void PreparerListeForces(List<Force>listeForces)
 {
-    Console.WriteLine("De quel côté de la force seras-tu ? ");
-    Console.WriteLine("1. Du côté lumineux");
-    Console.WriteLine("2. Du côté obscur");
-    Console.WriteLine("3. Neutre, pas de force pour moi");
+    listeForces.Add(new ForceLumineuse());
+    listeForces.Add(new ForceObscure());
+    listeForces.Add(new Force());
 }
 
-int AfficherForcesEtRetourneSelection()
+void AfficherChoixForces(List<Force> listeForces)
 {
-    AfficherChoixForces();
+    PreparerListeForces(listeForces);
+    Console.WriteLine("De quel côté de la force seras-tu ? ");
+    int i = 0;
+    foreach (Force force in listeForces)
+    {
+        Console.WriteLine(i + ": " + force);
+        i++;
+    }
+    //Console.WriteLine("1. Du côté lumineux");
+    //Console.WriteLine("2. Du côté obscur");
+    //Console.WriteLine("3. Neutre, pas de force pour moi");
+
+    // Créer une classe force qui puisse être lumineuse ou obscure et l'afficher à la place menu ci-dessus
+    // pouvoir sélectionner la force
+    // l'affecter au player
+}
+    int AfficherForcesEtRetourneSelection()
+{
+    AfficherChoixForces(listeForces);
 
     string saisieForce = Console.ReadLine();
     return int.Parse(saisieForce);
@@ -96,10 +110,20 @@ int[,] PrepareGrilleDuJeu()
 
 void AfficherMenu()
 {
-    AfficherItemMenu("nouvelle partie");
-    AfficherItemMenu("charger une partie", 2);
-    AfficherItemMenu("crédits", 3);
-    AfficherItemMenu("quitter", 4);
+    Menu menu = new Menu();
+    ItemMenu item = new ItemMenu(1, "nouvelle partie");
+    ItemMenu item2 = new ItemMenu(2, "charger une partie");
+    ItemMenu item3 = new ItemMenu(3, "crédits");
+    ItemMenu item4 = new ItemMenu(4, "quitter");
+    menu.addItem(item);
+    menu.addItem(item2);
+    menu.addItem(item3);
+    menu.addItem(item4);
+
+    menu.AfficherMenu();
+
+    // Créer une classe qui représente le menu
+    // sous-classe avec item menu qui va afficher menu
 }
 
 string RecupereSaisieAgeNonVide()
@@ -236,9 +260,11 @@ void AfficherForceSelectionnee()
 {
     int typeForce = AfficherForcesEtRetourneSelection();
 
-    const int forceLumineuse = 1;
-    const int forceObscur = 2;
-    const int sansForce = 3;
+    const int forceLumineuse = 0;
+    const int forceObscur = 1;
+    const int sansForce = 2;
+
+    player.setForce(listeForces[typeForce]); 
 
     switch (typeForce)
     {
@@ -285,9 +311,8 @@ void AfficherForceSelectionnee()
 #endregion
 
 // HarryPotter.Games.Core.Player player = new HarryPotter.Games.Core.Player("yoda");
-Player player = new Player("yoda");
-Ennemi ennemi = new("Compte Doku");
-int[,] grille;
+
+    int[,] grille;
 
 void InitDonneesJeu()
 {
@@ -394,6 +419,7 @@ InitDonneesJeu();
 
 #region Lancement du jeu
 player.SeDeplacer();
+player.SeDeplacer(new Position(1, 1));
 player.Attaquer(ennemi);
 #endregion
 

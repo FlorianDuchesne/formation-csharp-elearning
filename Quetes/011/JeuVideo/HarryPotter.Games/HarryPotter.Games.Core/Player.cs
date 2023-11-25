@@ -9,47 +9,30 @@ namespace HarryPotter.Games.Core
     /// <summary>
     /// Class qui représente le joueur, la joueuse dans le jeu
     /// </summary>
-    public class Player
+    public class Player : Character
     {
         #region Fields
         private string email = "";
-        // private string pseudo;
+        private string? prenom;
         private DateOnly dateDeNaissance;
 
         private Player[] Amis = new Player[3];
+        private Force? force { get; set; }
         #endregion
 
         #region Constructors
-        public Player(string pseudo, DateOnly dateNaissance)
+
+        public Player() : this(string.Empty, DateOnly.MinValue) { }
+
+        public Player(string pseudo, DateOnly dateNaissance) : base(pseudo)
         {
-            this.Pseudo = pseudo;
             this.dateDeNaissance = dateNaissance;
         }
 
-        public Player(string pseudo)
-        {
-            this.Pseudo = pseudo;
-        }
+        public Player(string pseudo) : this(pseudo, DateOnly.MinValue) {}
 
-        public Player(DateOnly dateNaissance)
-        {
-            this.dateDeNaissance = dateNaissance;
-        }
-        #endregion
+        public Player(DateOnly dateNaissance): this(string.Empty, dateNaissance) {}
 
-        #region Public methods
-        /// <summary>
-        /// Méthode qui permet de changer la position du joueur
-        /// </summary>
-        public void SeDeplacer()
-        {
-            System.Console.WriteLine($"{this.Pseudo} Je me déplace");
-        }
-
-        public void Attaquer(Ennemi enemy)
-        {
-            System.Console.WriteLine("J'attaque l'ennemy {0}", enemy);
-        }
         #endregion
 
         #region Properties
@@ -72,8 +55,6 @@ namespace HarryPotter.Games.Core
 
         public string Email { get => email; set => email = value; }
 
-        public string Pseudo { get; set; } = "yoda";
-
         //public DateOnly GetDateDeNaissance()
         //{
         //    return this.dateDeNaissance;
@@ -87,6 +68,22 @@ namespace HarryPotter.Games.Core
         /// Points de vie, max à 100 (au début du jeu)
         /// </summary>
         public int PointsDeVie { get; set; }
+        #endregion
+
+        #region Methodes
+
+        public override void SeDeplacer()
+        {
+            //sbase.SeDeplacer();
+            System.Console.WriteLine($"{this.Prenom} Je cours");
+        }
+
+        public void setForce(Force force)
+        {
+            this.force = force;
+            force.setPlayer(this);
+        }
+
         #endregion
     }
 }
