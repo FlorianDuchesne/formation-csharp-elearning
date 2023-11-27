@@ -116,7 +116,7 @@ void AfficherMenu()
     menu.AddItem(3, "crédits");
     menu.AddItem(4, "quitter");
 
-    menu.Afficher();
+    menu.Afficher(Console.WriteLine);
 
     // Créer une classe qui représente le menu
     // sous-classe avec item menu qui va afficher menu

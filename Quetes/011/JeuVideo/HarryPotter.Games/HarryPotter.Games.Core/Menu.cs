@@ -10,11 +10,12 @@ namespace HarryPotter.Games.Core
         #endregion
 
         #region methods
-        public void Afficher()
+        public void Afficher(AfficherInformation afficher)
         {
             foreach(ItemMenu item in items)
             {
-                Console.WriteLine(item);
+                //Console.WriteLine(item);
+                afficher(item);
             }
         }
 
