@@ -22,16 +22,16 @@ namespace HarryPotter.Games.Core
 
         #region Constructors
 
-        public Player() : this(string.Empty, DateOnly.MinValue) { }
+        public Player(AfficherInformation afficher) : this(string.Empty, DateOnly.MinValue, afficher) { }
 
-        public Player(string pseudo, DateOnly dateNaissance) : base(pseudo)
+        public Player(string pseudo, DateOnly dateNaissance, AfficherInformation afficher) : base(pseudo, afficher)
         {
             this.dateDeNaissance = dateNaissance;
         }
 
-        public Player(string pseudo) : this(pseudo, DateOnly.MinValue) {}
+        public Player(string pseudo, AfficherInformation afficher) : this(pseudo, DateOnly.MinValue, afficher) {}
 
-        public Player(DateOnly dateNaissance): this(string.Empty, dateNaissance) {}
+        public Player(DateOnly dateNaissance, AfficherInformation afficher) : this(string.Empty, dateNaissance, afficher) {}
 
         #endregion
 
@@ -77,7 +77,8 @@ namespace HarryPotter.Games.Core
         public override void SeDeplacer()
         {
             //sbase.SeDeplacer();
-            System.Console.WriteLine($"{this.Prenom} Je cours");
+            this.afficher($"{this.Prenom} Je cours");
+            //System.Console.WriteLine($"{this.Prenom} Je cours");
         }
 
         public void SetForce(Force force)

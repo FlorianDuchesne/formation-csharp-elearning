@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
-Player player = new Player("yoda");
-Ennemi ennemi = new("Compte Doku");
+Player player = new Player("yoda", Console.WriteLine);
+Ennemi ennemi = new("Compte Doku", Console.WriteLine);
 List<Force> listeForces = new List<Force>();
 
 //string surname = null;
@@ -116,10 +116,19 @@ void AfficherMenu()
     menu.AddItem(3, "crédits");
     menu.AddItem(4, "quitter");
 
-    menu.Afficher(Console.WriteLine);
+    menu.Afficher(AfficherEnRouge);
 
     // Créer une classe qui représente le menu
     // sous-classe avec item menu qui va afficher menu
+}
+
+void AfficherEnRouge(object value)
+{
+    Console.ForegroundColor = ConsoleColor.DarkRed;
+
+    Console.WriteLine(value);
+
+    Console.ForegroundColor = ConsoleColor.White;
 }
 
 string RecupereSaisieAgeNonVide()
@@ -417,6 +426,7 @@ InitDonneesJeu();
 player.SeDeplacer();
 player.SeDeplacer(new Position(1, 1));
 player.Attaquer(ennemi);
+Console.ReadLine();
 #endregion
 
 

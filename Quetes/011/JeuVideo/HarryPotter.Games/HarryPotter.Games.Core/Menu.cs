@@ -10,7 +10,9 @@ namespace HarryPotter.Games.Core
         #endregion
 
         #region methods
-        public void Afficher(AfficherInformation afficher)
+        // n'a pas besoin du délégué AfficherInformation : utilise délégué natif
+        public void Afficher(Action<object> afficher)
+        //public void Afficher(AfficherInformation afficher)
         {
             foreach(ItemMenu item in items)
             {

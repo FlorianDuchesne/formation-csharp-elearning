@@ -5,18 +5,20 @@ namespace HarryPotter.Games.Core
     /// <summary>
     /// Classe parente
     /// </summary>
-	public class Character
+	public abstract class Character
 	{
+        #region fields
+
+        protected readonly AfficherInformation afficher;
+        #endregion
 
         #region Constructors
 
-        public Character()
-        {
-            this.Prenom = String.Empty;
-        }
+        public Character(AfficherInformation afficher) : this(string.Empty, afficher) {}
 
-        public Character(string prenom)
+        public Character(string prenom, AfficherInformation afficher)
         {
+            this.afficher = afficher;
             this.Prenom = prenom;
         }
 
@@ -37,17 +39,19 @@ namespace HarryPotter.Games.Core
         /// </summary>
         public virtual void SeDeplacer()
         {
-            System.Console.WriteLine($"{this.Prenom} Je me déplace");
+            this.afficher($"{this.Prenom} Je me déplace");
+            //System.Console.WriteLine($"{this.Prenom} Je me déplace");
         }
         public void SeDeplacer(Position newPosition)
         {
-            this.SeDeplacer();
+            //this.SeDeplacer();
             this.CurrentPosition = newPosition;
         }
 
         public void Attaquer(Character enemy)
         {
-            System.Console.WriteLine("J'attaque le player {0}", enemy);
+            this.afficher($"J'attaque le player {enemy}");
+            //System.Console.WriteLine("J'attaque le player {0}", enemy);
         }
         #endregion
     }
